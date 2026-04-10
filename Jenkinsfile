@@ -62,7 +62,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name sonar-app $IMAGE_NAME:latest'
+                sh 'docker run -d -p 8081:8080 --name sonar-app1 $IMAGE_NAME:latest'
             }
         }
     }
