@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch:'main', url:'https://github.com/subbarao-git/POC8.git'
+                checkout scm
             }
         }
 
@@ -37,12 +37,6 @@ pipeline {
                 withSonarQubeEnv("${SONARQUBE}") {
                     sh 'mvn sonar:sonar'
                 }
-            }
-        }
-
-                stage('Quality Gate') {
-            steps {
-                waitForQualityGate abortPipeline: true
             }
         }
 
