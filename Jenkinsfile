@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "subbu2712/java-app-sonar"
-        SONARQUBE = "SonarQube-Server"
+        SONARQUBE = "SonarQube"
     }
 
     stages {
@@ -16,19 +16,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
                 sh 'mvn test'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                sh 'mvn package -DskipTests'
             }
         }
 
@@ -61,7 +55,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name sonar $IMAGE_NAME:latest'
+                sh 'docker run -d -p 8081:8080 --name sonar-app $IMAGE_NAME:latest'
             }
         }
     }
