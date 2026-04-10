@@ -34,6 +34,13 @@ pipeline {
             }
         }
 
+        stage('Debug') {
+            steps {
+                sh 'ls -la'
+                sh 'find . -name report-task.txt'
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
