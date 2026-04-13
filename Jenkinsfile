@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "subbu2712/java-app-sonar"
+        IMAGE_NAME = "subbu2712/java-app-sonar1"
         SONARQUBE = "SonarQube"
     }
 
@@ -62,7 +62,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name sonar-app1 $IMAGE_NAME:latest'
+                sh 'docker run -d -p 8081:8080 --name sonar-app2 $IMAGE_NAME:latest'
             }
         }
     }
